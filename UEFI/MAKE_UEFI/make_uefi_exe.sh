@@ -1,7 +1,7 @@
 #! /bin/sh
 
 
-EFIFOLDER='/boot/efi/EFI/ubuntu4'
+EFIFOLDER='/boot/efi/EFI/ubuntu'
 
 
 if [ -f "${EFIFOLDER}/vmlinuz"  ]; then
@@ -11,7 +11,8 @@ fi
 
 
 
-echo "root=/dev/mapper/root rw quiet splash" > /tmp/cmdline
+## echo "root=/dev/mapper/root rw quiet splash" > /tmp/cmdline
+echo "root=/dev/mapper/ubuntu--vg-ubuntu--lv ro ima_appraise=fix evm=fix ima_policy=appraise_tcb ima_audit=1" > /tmp/cmdline
 
 objcopy \
   --add-section .osrel=/etc/os-release --change-section-vma .osrel=0x20000 \
