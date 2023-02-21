@@ -102,7 +102,12 @@ x509_evm.der
 *apt install libncurses-dev libncurses dwarves build-essential gcc bc bison flex libssl-dev libelf-dev dpkg-dev*.  
 Также необходимо установить исходные коды самого ядра.  
 Для этой цели будем брать коды самой "ubuntu" от *Canonical*, чтоб собранное ядро минимально отличалось от того, которое идёт в дистрибутиве и ничего не нарушилось.  
+В нашем случае на момент написания этого опуса это будет *apt install linux-source-5.15.0*.  
 
+После установки исходных кодов пересобираем ядро с опциями  
+**CONFIG_EVM_LOAD_X509**  
+**CONFIG_EVM_X509_PATH** - здесь указываем путь к сертификату в формате DER, который мы собираемся загрузить - */etc/keys/x509_evm.der*
+опцию **CONFIG_IMA_TRUSTED_KEYRING** снимаем и смотрим чтоб опция **CONFIG_INTEGRITY_TRUSTED_KEYRING** біла включена.  
 
 
 
