@@ -12,7 +12,9 @@ fi
 
 
 ## echo "root=/dev/mapper/root rw quiet splash" > /tmp/cmdline
-echo "root=/dev/mapper/ubuntu--vg-ubuntu--lv ro ima_appraise=fix evm=fix ima_policy=appraise_tcb ima_audit=1" > /tmp/cmdline
+# evm=fix
+##echo "root=/dev/mapper/ubuntu--vg-ubuntu--lv ro lsm=apparmor,integrity ima_appraise=log integrity_audit=1" > /tmp/cmdline
+echo "root=/dev/mapper/ubuntu--vg-ubuntu--lv ro lsm=apparmor,integrity ima_appraise=off integrity_audit=1" > /tmp/cmdline
 
 objcopy \
   --add-section .osrel=/etc/os-release --change-section-vma .osrel=0x20000 \

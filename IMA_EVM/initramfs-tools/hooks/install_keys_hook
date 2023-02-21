@@ -1,0 +1,36 @@
+#!/bin/sh
+# Includes IMA's necessary components in the initramfs image
+# Place in /etc/initramfs-tools/hooks
+
+PREREQ=""
+prereqs()
+{
+    echo "$PREREQ"
+}
+
+case $1 in
+    prereqs)
+        prereqs
+        exit 0
+        ;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+# Begin real processing below this line
+
+# Copy executables we need to initramfs
+copy_exec /usr/bin/keyctl /usr/bin
+copy_exec /usr/bin/evmctl /usr/bin
+
+# Copy other files to initramfs
+mkdir -p $DESTDIR/etc/keys
+
+if [ -f /etc/keys/x509_ima.der ]; then
+cp -a /etc/keys/x509_ima.der $DESTDIR/etc/keys
+fi
+
+if [ -f /etc/keys/x509_evm.der ]; then
+cp -a /etc/keys/x509_evm.der $DESTDIR/etc/keys
+fi
+
+exit 0
