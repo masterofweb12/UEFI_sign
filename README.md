@@ -109,6 +109,18 @@ x509_evm.der
 **CONFIG_EVM_X509_PATH** - здесь указываем путь к сертификату в формате DER, который мы собираемся загрузить - */etc/keys/x509_evm.der*
 опцию **CONFIG_IMA_TRUSTED_KEYRING** снимаем и смотрим чтоб опция **CONFIG_INTEGRITY_TRUSTED_KEYRING** біла включена.  
 
+Пересобираем *ядро*. Устанавливаем его. Подписываем. Потом объединяем *ядро* с *initramfs*, подписываем объединённый образ, и перегружаемся.
+
+Теперь мы должны в */var/log/kernel.log* увидеть нечто на манер такого:  
+ integrity: Loading X.509 certificate: /etc/keys/x509_evm.der  
+ integrity: Loaded X.509 cert 'masterkey: 0f09f7b7246b9b4b113bc2bd064f82b06a25bd94'  
+ Значит всё прошло успешно.  
+ 
+ 
+ 
+
+
+
 
 
 
