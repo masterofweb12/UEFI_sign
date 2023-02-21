@@ -28,6 +28,11 @@ masterkey.cer.siglist
 masterkey.crt  
 masterkey.key
 
+В файлах *masterkey.crt* и *masterkey.key* содержатся сертификат и его приватный ключ. В файле *masterkey.cer* тот же сертификат в формате *DER*.
+Также скрипт генерирует произвольный *UID* и сохраняет его в файл *masterkey.GUID.txt*.
+На основе файлов *masterkey.GUID.txt* и *masterkey.cer* генерируется *siglist*. 
+**siglist** является специальным видом файла экспорт которого возможен в энергонезависимую памят *UEFI*.
+
 
 
 
