@@ -109,13 +109,13 @@ x509_evm.der
 **CONFIG_EVM_X509_PATH** - здесь указываем путь к сертификату в формате DER, который мы собираемся загрузить - */etc/keys/x509_evm.der*
 опцию **CONFIG_IMA_TRUSTED_KEYRING** снимаем и смотрим чтоб опция **CONFIG_INTEGRITY_TRUSTED_KEYRING** біла включена.  
 Также нужно добавить сертификат в файл с доверенными сертификатами в исходниках *ядра*, который расположен в папке с исходниками ядра по относительному пути *debian/canonical-certs.pem*.  
-Чтоб это сделать, нужно перейти в */etc/keys* и выполнить команду *openssl x509 -inform PEM -in x509_evm.crt  -noout -text  >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/debian/canonical-certs.pem*,  
-а затем команду *cat x509_evm.crt >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/debian/canonical-certs.pem.  
+Чтоб это сделать, нужно перейти в */etc/keys* и выполнить команду ```openssl x509 -inform PEM -in x509_evm.crt  -noout -text  >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/debian/canonical-certs.pem```,  
+а затем команду ```cat x509_evm.crt >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/debian/canonical-certs.pem```.  
 
 Также сделаем так, чтоб этим же сертификатом при инсталяции *ядра* подписывались модули *ядра*.  
 Для сначала перейдём в папку в которой мы сздавали ключи для записи в *UEFI*, а потом в папке с исходниками ядра создалим файл *certs/my_signing_key.pem* при помощи следующих команд:  
-*cat masterkey.key >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/certs/my_signing_key.pem* и  
-*cat masterkey.crt >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/certs/my_signing_key.pem*  
+```cat masterkey.key >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/certs/my_signing_key.pem``` и  
+```cat masterkey.crt >> /ПУТЬ_К_ИСХОДНИКАМ_ЯДРА/certs/my_signing_key.pem```  
 после чего в конфигурации ядра нужно установить переменную **CONFIG_MODULE_SIG_KEY** в значение *certs/my_signing_key.pem*.
 
 Пересобираем *ядро*. Устанавливаем его. Подписываем. Потом объединяем *ядро* с *initramfs*, подписываем объединённый образ, и перегружаемся.
