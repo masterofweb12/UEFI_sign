@@ -90,8 +90,7 @@ pubkey_evm.pem
 x509_evm.der  
 
 Для этого скопируем в наш каталог */etc/keys* приватный ключ *masterkey.key* сгенерированный нами для подписи ядра ОС и назовём его *privkey_evm.pem*.
-Скопируем в каталог */etc/keys* файл сертификата *masterkey.crt* и вытянем из него публичный ключ командой ```openssl x509 -inform PEM -in masterkey.crt  -outform PEM -pubkey -nocert -out pubkey_evm.pem```.  
-Теперь можем удалить файл *masterkey.crt* из каталога */etc/keys*.  
+Скопируем в каталог */etc/keys* файл сертификата *masterkey.crt* и вытянем из него публичный ключ командой ```openssl x509 -inform PEM -in masterkey.crt  -outform PEM -pubkey -nocert -out pubkey_evm.pem```.    
 Также скопируем файл *masterkey.cer* в каталог */etc/keys* под именем *x509_evm.der*.  
 
 Тепеь нам нужно загрузить файл *x509_evm.der* в каталог */etc/keys* внутри образа *initramfs*. Для этого мы должны установить скрипт [/UEFI_sign/IMA_EVM/initramfs-tools/hooks/install_keys_hook](/UEFI_sign/IMA_EVM/initramfs-tools/hooks/install_keys_hook) в директорию */etc/initramfs-tools/hooks* и перегенерировать *initramfs* командой ```update-initramfs -u -k ВЕРСИЯ_НАШЕГО_ЯДРА```, где ВЕРСИЯ_НАШЕГО_ЯДРА - это то, что находится после *vmlinuz-* в имени файла с ядром в каталоге */boot*.  
