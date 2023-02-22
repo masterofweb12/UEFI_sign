@@ -132,7 +132,7 @@ x509_evm.der
  установка пароля на приватный ключ  
 ```openssl rsa -des3 -in not_enc.key -out enc.key```  
 
- Снятие пароля с приватного ключа 
+ Снятие пароля с приватного ключа  
 ```openssl rsa -in enc.key -out not_enc.key``` 
 
 
