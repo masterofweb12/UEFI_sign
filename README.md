@@ -133,7 +133,13 @@ x509_evm.der
 ```openssl rsa -des3 -in not_enc.key -out enc.key```  
 
  Снятие пароля с приватного ключа  
-```openssl rsa -in enc.key -out not_enc.key``` 
+```openssl rsa -in enc.key -out not_enc.key```  
+
+Компиляция ядра с инсталяцией в произвольную папку  
+``` 
+export INSTALL_PATH=/ПУТЬ_ИНСТАЛЯЦИИ/boot  
+export INSTALL_MOD_PATH=/ПУТЬ_ИНСТАЛЯЦИИ 
+```
 
 
  
