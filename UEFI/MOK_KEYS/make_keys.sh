@@ -3,7 +3,7 @@
 echo -n "Enter a Common Name to embed in the keys: "
 read NAME
 
-openssl req -new -x509 -newkey rsa:4096 -subj "/CN=$NAME/" -keyout $NAME.key -out $NAME.crt -days 36500 -nodes -sha256
+openssl req -new -x509 -newkey rsa:4096 -subj "/CN=$NAME/" -keyout $NAME.key -out $NAME.crt -days 36500  -sha256
 openssl x509 -in $NAME.crt  -out $NAME.cer  -outform DER
 
 GUID=$(uuidgen)
